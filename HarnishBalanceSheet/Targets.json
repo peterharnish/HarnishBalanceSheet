@@ -1,0 +1,22 @@
+[
+        {
+          "Asset": "Precious Metals",
+          "Target": 0.1
+        },
+        {
+          "Asset": "Cash",
+          "Target": 0.1
+        },
+        {
+          "Asset": "Real Estate",
+          "Target": 0.2
+        },
+        {
+          "Asset": "Bonds",
+          "Target": 0.2
+        },
+        {
+          "Asset": "Stocks",
+          "Target": 0.4
+        }
+      ]

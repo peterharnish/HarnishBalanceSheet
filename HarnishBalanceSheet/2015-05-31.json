@@ -1,0 +1,80 @@
+{
+  "Assets": [
+    {
+      "Name": "Home",
+      "Value": 100000,
+      "Type": "Real Estate"
+    },
+    {
+      "Name": "Checking",
+      "Value": 1000,
+      "Type": "Cash"
+    },
+    {
+      "Name": "Savings",
+      "Value": 10000,
+      "Type": "Cash"
+    },
+    {
+      "Name": "Fidelity",
+      "Value": 100000,
+      "Fractions": [
+        {
+          "Type": "Stocks",
+          "Fraction": 0.93
+        },
+        {
+          "Type": "Bonds",
+          "Fraction": 0.06
+        },
+        {"Type": "Cash","Fraction": 0.01}
+      ]
+    },
+    {
+      "Name": "Schwab",
+      "Value": 10000,
+      "Fractions": [{"Type": "Stocks", "Value": 5000},{"Type": "Bonds","Value": 5000}]
+    },
+    {
+      "Name": "Roth",
+      "Value": 1000,
+      "Type": "Cash"
+    },
+    {
+      "Name": "Coins",
+      "Type": "Precious Metals",
+      "Elements": [
+        {
+          "Element": "Gold",
+          "Ounces": 1,
+          "Price": 1175.95
+        },
+        {
+          "Element": "Silver",
+          "Ounces": 1,
+          "Price": 16.17
+        },
+        {
+          "Element": "Platinum",
+          "Ounces": 1,
+          "Price": 1127
+        },
+        {
+          "Element": "Palladium",
+          "Ounces": 1,
+          "Price": 772
+        }
+      ]
+    }
+  ],
+      "Liabilities": [
+        {
+          "Name": "Mortgage",
+          "Value": 196304.15
+        },
+        {
+          "Name": "Credit Card",
+          "Value": 302.01
+        }
+      ]
+}

@@ -1,0 +1,15 @@
+﻿.bold {
+    font-weight:bold;
+}
+
+.right {
+    text-align:right;
+}
+
+.diff {
+    text-align:right;
+}
+
+.hundred {
+    width: 100px;
+}

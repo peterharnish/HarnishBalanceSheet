@@ -1,0 +1,136 @@
+﻿@model HarnishBalanceSheet.Models.Snapshot
+
+@{
+    ViewBag.Title = "View";
+}
+
+@*@Scripts.Render("~/Scripts/details.js")*@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/Scripts/Chart.min.js"></script>
+<script src="~/Scripts/details.js?<?=time()?>"></script>
+
+<table cellpadding="10" style="float:left">
+    <tr class="bold">
+        <td>Assets</td>
+        <td>Liabilities</td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                @foreach (var asset in Model.Assets)
+                {
+                    <tr>
+                        <td class="hundred">@asset.Name</td>
+                        <td class="right">@asset.Value.ToString("F2")</td>
+                    </tr>
+                }
+                <tr class="bold">
+                    <td>Total</td>
+                    <td class="right">@Model.TotalAssets.ToString("F2")</td>
+                </tr>
+            </table>
+        </td>
+        <td style="vertical-align:top">
+            <table>
+                @foreach (var liability in Model.Liabilities)
+                {
+                    <tr>
+                        <td class="hundred">@liability.Name</td>
+                        <td class="right">@liability.Value.ToString("F2")</td>
+                    </tr>
+                }
+                <tr class="bold">
+                    <td>Total</td>
+                    <td class="right">@Model.TotalLiabilities.ToString("F2")</td>
+                </tr>
+                <tr class="bold">
+                    <td>Net Worth</td>
+                    <td class="right">@Model.NetWorth.ToString("F2")</td>
+                </tr>
+            </table>
+        </td>
+    </tr> 
+</table>
+<div style="float:left;margin-top:10px">
+    <p>Date:&nbsp;@Html.TextBoxFor(model => Model.DateFormatted, new { id = "datepicker" })</p>
+</div>
+<div style="clear:both">
+    @Html.ActionLink("Edit", "Edit", "BalanceSheet")
+</div>
+<hr />
+<div>
+    @foreach (var group in Model.Groups)
+    {
+        <table style="float:left;margin-right:10px;">
+            <tr class="bold">
+                <td colspan="2">@group.Type</td>
+            </tr>
+            @foreach (var pair in group.Pairs)
+            {
+                <tr>
+                    <td class="hundred">@pair.Name</td>
+                    <td class="right">@pair.Value.ToString("F2")</td>
+                </tr>
+            }
+            <tr class="bold">
+                <td class="hundred">Total</td>
+                <td class="right">@group.Total.ToString("F2")</td>
+            </tr>
+        </table>
+    }
+</div>
+<div style="clear:both">
+    <br />
+    <hr />
+    
+<table style="float:left;margin-right:100px;">
+    <tr class="bold">
+        <td>Coins</td>
+        <td style="padding-left:10px">Num Ounces</td>
+        <td style="padding-left:10px">Price per Ounce</td>
+        <td style="padding-left:10px">Total Price</td>
+    </tr>
+    @foreach (var element in Model.Assets.Where(x => x.Name == "Coins").First().Elements)
+    {
+        <tr>
+            <td>@element.Element</td>
+            <td class="right">@element.Ounces</td>
+            <td class="right">@element.Price.ToString("F2")</td>
+            <td class="right">@element.TotalValue.ToString("F2")</td>
+        </tr>
+    }
+    <tr class="bold">
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td class="right">@Model.Assets.Where(x => x.Name == "Coins").First().Value.ToString("F2")</td>
+    </tr>
+</table>
+    <table style="float:left;margin-right:10px;">
+        <tr class="bold">
+            <td style="width:150px">Asset</td>
+            <td>Target</td>
+            <td class="right">Actual</td>
+            <td class="right">Difference</td>
+        </tr>
+        @foreach (var target in Model.Targets)
+        {
+            <tr class="target">
+                <td>@target.Asset</td>
+                <td class="right">@target.Target.ToString("P")</td>
+                <td class="right" style="width:100px">@target.Actual.ToString("P")</td>
+                <td class="diff" style="width:100px;text-align:right;">@target.Difference.ToString("P")</td>
+            </tr>
+        }
+    </table>
+    </div>
+<div style="clear:both">
+    <br />
+    <hr />
+    <canvas id="chart1" width="700" height="400" title="Liabilities"></canvas>
+    <p style="font-weight:bold;width:700px;text-align:center">Liabilities</p>
+    <canvas id="chart2" width="700" height="400" title="Net Worth"></canvas>
+    <p style="font-weight:bold;width:700px;text-align:center">Net Worth</p>
+    </div>
+

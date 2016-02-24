@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Asset</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="Content/styles.css">
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/addasset.js"></script>
+</head>
+<body>
+    <br />
+    &nbsp;Asset Name:&nbsp;<input id="assetName" type="text" />&nbsp;Value:&nbsp;<input id="value" style="text-align:right" type="text" />&nbsp;Type:&nbsp;
+    <select id="assetType">
+        <option value=""></option>
+        <option value="Cash">Cash</option>
+        <option value="Precious Metals">Precious Metals</option>
+        <option value="Real Estate">Real Estate</option>
+        <option value="Bonds">Bonds</option>
+        <option value="Stocks">Stocks</option>
+    </select>
+    <br />
+    <br />
+    <table> 
+        <tr class="bold">
+            <td>Asset Type</td>
+            <td>Fraction</td>
+            <td>Value</td>
+        </tr>
+        <tr>
+            <td class="type">Cash</td>
+            <td><input class="fract" style="text-align:right" type="text" /></td>
+            <td><input class="value" style="text-align:right" type="text" /></td>
+        </tr> 
+        <tr>
+            <td class="type">Precious Metals</td>
+            <td><input class="fract" style="text-align:right" type="text" /></td>
+            <td><input class="value" style="text-align:right" type="text" /></td>
+        </tr> 
+        <tr>
+            <td class="type">Real Estate</td>
+            <td><input class="fract" style="text-align:right" type="text" /></td>
+            <td><input class="value" style="text-align:right" type="text" /></td>
+        </tr> 
+        <tr>
+            <td class="type">Bonds</td>
+            <td><input class="fract" style="text-align:right" type="text" /></td>
+            <td><input class="value" style="text-align:right" type="text" /></td>
+        </tr> 
+        <tr>
+            <td class="type">Stocks</td>
+            <td><input class="fract" style="text-align:right" type="text" /></td>
+            <td><input class="value" style="text-align:right" type="text" /></td>
+        </tr>       
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <button id="btnOK" title="OK">OK</button>
+                <button id="btnCancel" title="Cancel">Cancel</button>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

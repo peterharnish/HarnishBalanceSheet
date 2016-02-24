@@ -1,0 +1,86 @@
+﻿@model HarnishBalanceSheet.Models.Snapshot
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@*@Scripts.Render("~/Scripts/edit.js")*@
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/Scripts/edit.js?<?=time()?>"></script>
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @*@Html.AntiForgeryToken()*@
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <table cellpadding="10" style="float:left">
+                <tr class="bold">
+                    <td>Assets</td>
+                    <td>Liabilities</td>
+                </tr>
+                <tr>
+                    <td>
+                        <table id="assets">
+                            @foreach (var asset in Model.Assets)
+                            {
+                                <tr>
+                                    <td class="hundred">@Html.Label(asset.Name)@Html.HiddenFor(x => asset.Name)</td>
+                                    <td class="right">@Html.TextBoxFor(x => asset.FormattedValue, new { style = "text-align:right" })</td>
+                                    <td>&nbsp;
+                                        @if (string.IsNullOrEmpty(asset.Type))
+                                        {
+                                            <a href="#" class="edit">Edit</a>
+                                        }
+                                    @if(asset.Type == "Precious Metals")
+                                    {
+                                        <a href="#" id="editcoins">Edit</a>
+                                    }
+                                    </td>                                
+                                   <td>@Html.HiddenFor(x => asset.Type)@Html.HiddenFor(x => asset.FormattedFractions)@Html.HiddenFor(x => asset.FormattedElements)</td>
+                                </tr>
+                }
+                            <tr id="rwAddAsset">
+                                <td><a href="#" id="addAsset">Add</a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </table>
+</td>
+                    <td style="vertical-align:top">
+                        <table>
+                            @foreach (var liability in Model.Liabilities)
+                {
+                                <tr>
+                                    <td class="hundred">@Html.Label(liability.Name)@Html.HiddenFor(x => liability.Name)</td>
+                                    <td class="right">@Html.TextBoxFor(x => liability.Value, new { style = "text-align:right" })</td>
+                                </tr>
+                }
+                            <tr id="rwAddLiability">
+                                <td><a href="#" id="addLiability">Add</a></td>
+                                <td></td>
+                            </tr>
+                            </table>
+</td>
+</tr>
+                        </table>
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+</div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Details")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
