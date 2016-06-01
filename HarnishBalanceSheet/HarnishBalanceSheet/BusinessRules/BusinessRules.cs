@@ -48,6 +48,15 @@ namespace HarnishBalanceSheet.BusinessRules
             Trace.TraceInformation("Entering BusinessRules.CalculateNetWorth.");
 
             CalculateCoinTotalValue();
+            
+            var noType = this.Snapshot.Assets.Where(x => string.IsNullOrEmpty(x.Type) && x.Fractions != null);
+
+            foreach (var asset in noType)
+            {
+                var sum = asset.Fractions.Select(x => x.Value).Sum();
+                if (sum > 0) asset.Value = sum;
+            }
+            
             this.Snapshot.TotalAssets = this.Snapshot.Assets.Select(x => x.Value).Sum();
             this.Snapshot.TotalLiabilities = CalculateTotalLiabilities();
             decimal netWorth = this.Snapshot.TotalAssets - this.Snapshot.TotalLiabilities;
